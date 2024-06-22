@@ -45,7 +45,7 @@ dependencies:
   go_router: ^14.1.4
   video_player: ^2.8.7
   flick_video_player: ^0.8.0
-  tflite: ^1.1.2
+  # tflite: ^1.1.2
   translator: ^1.0.0
   easy_localization: ^3.0.7
 
