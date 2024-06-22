@@ -1,0 +1,4 @@
+p_vivax
+p_falcipalam
+p_ovale
+p_malariae
