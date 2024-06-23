@@ -20,7 +20,7 @@ class UploadImage extends StatefulWidget {
 }
 
 class _UploadImageState extends State<UploadImage> {
-  File? filePath;
+  File? _filePath;
   double confidence = 0.0;
   String label = '';
 
@@ -48,7 +48,7 @@ class _UploadImageState extends State<UploadImage> {
     }
 
     setState(() {
-      filePath = File(pickedFile.path);
+      _filePath = File(pickedFile.path);
     });
 
     try {
@@ -122,7 +122,7 @@ class _UploadImageState extends State<UploadImage> {
             children: [
               Container(
                 color: Color.fromRGBO(98, 149, 162, 1),
-                child: filePath == null
+                child: _filePath == null
                     ? Column(
                         children: [
                           const SizedBox(
@@ -159,15 +159,50 @@ class _UploadImageState extends State<UploadImage> {
                         width: 280,
                         decoration: BoxDecoration(
                           color: lightBlue,
-                          borderRadius: BorderRadius.circular(12),
-                          image: filePath == null
+                          borderRadius: BorderRadius.circular(8),
+                          image: _filePath == null
                               ? const DecorationImage(
                                   image: AssetImage('assets/upload.jpg'),
                                 )
                               : DecorationImage(
-                                  image: FileImage(filePath!),
+                                  image: FileImage(_filePath!),
                                   fit: BoxFit.fill,
                                 ),
+                        ),
+                        child: UploadButton(
+                          onTap: () {
+                            if (_filePath != null) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      Results(image: _filePath),
+                                ),
+                              );
+                            } else {
+                              // Handle the case where _filePath is null, e.g., show an error message
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content:
+                                        Text('Please select an image first.')),
+                              );
+                            }
+                          },
+                          // onTap: () {
+                          //   // pickImage(ImageSource.gallery);
+                          //   Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             Results(image: _filePath)),
+                          //   );
+                          //   // Results();
+                          // },
+                          icon: Icon(
+                            Icons.recent_actors_outlined,
+                            color: white,
+                          ),
+                          text: 'See full Diagnostic Report',
                         ),
                       ),
               ),
@@ -184,14 +219,14 @@ class _UploadImageState extends State<UploadImage> {
                         ),
                       ),
                       const SizedBox(
-                        height: 80,
+                        height: 70,
                       ),
                       Text(
                         "The Accuracy is ${confidence.toStringAsFixed(0)}%",
                         // 'Number of pathogens detected ${confidence.toStringAsFixed(0)}',
                         style: const TextStyle(
                           color: mainBlue,
-                          fontSize: 18,
+                          fontSize: 12,
                         ),
                       )
                     ],
@@ -238,11 +273,11 @@ class _UploadImageState extends State<UploadImage> {
               30.height(),
               UploadButton(
                 onTap: () {
-                  // pickImage(ImageSource.gallery);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Results()),
-                  );
+                  pickImage(ImageSource.gallery);
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => Results()),
+                  // );
                   // Results();
                 },
                 icon: Icon(
