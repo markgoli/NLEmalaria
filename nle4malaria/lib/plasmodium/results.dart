@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:nle4malaria/Authentication/components/Buttons.dart';
 import 'package:nle4malaria/config/extensions.dart';
+import 'package:nle4malaria/plasmodium/uploadImage.dart';
 import 'package:nle4malaria/styles/color.dart';
 
 class Results extends StatelessWidget {
-  Results({Key? key}) : super(key: key);
+  final File? image;
+
+  Results({Key? key, required this.image}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +17,7 @@ class Results extends StatelessWidget {
       backgroundColor: bgColor,
       appBar: AppBar(
         title: const Text(
-          'Diagnostic Results',
+          'Diagnostic Report',
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,
@@ -70,13 +75,15 @@ class Results extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
+                    height: 280,
+                    width: 280,
                     decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                    child: Image.asset(
-                      'assets/images/free_plasm.jpg',
+                        BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                    child: Image.file(
+                      image!,
                       width: 320,
-                      height: 290,
-                      fit: BoxFit.fitWidth,
+                      height: 320,
+                      fit: BoxFit.fill,
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -131,7 +138,12 @@ class Results extends StatelessWidget {
                   ),
                   60.height(),
                   UploadButton(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => UploadImage()),
+                      );
+                    },
                     text: 'Scan Again',
                     icon: Icon(
                       Icons.camera,
