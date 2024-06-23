@@ -76,12 +76,12 @@ class Results extends StatelessWidget {
                 children: [
                   Container(
                     height: 280,
-                    width: 280,
+                    width: 300,
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(12)),
                     child: Image.file(
                       image!,
-                      width: 320,
+                      width: 340,
                       height: 320,
                       fit: BoxFit.fill,
                     ),

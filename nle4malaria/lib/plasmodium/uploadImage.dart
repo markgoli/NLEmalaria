@@ -158,68 +158,67 @@ class _UploadImageState extends State<UploadImage> {
                         height: 280,
                         width: 280,
                         decoration: BoxDecoration(
-                          color: lightBlue,
-                          borderRadius: BorderRadius.circular(8),
+                          // color: lightBlue,
+                          borderRadius: BorderRadius.circular(12),
+                          shape: BoxShape.rectangle,
                           image: _filePath == null
                               ? const DecorationImage(
                                   image: AssetImage('assets/upload.jpg'),
                                 )
                               : DecorationImage(
-                                  image: FileImage(_filePath!),
+                                  image: FileImage(
+                                    _filePath!,
+                                  ),
                                   fit: BoxFit.fill,
                                 ),
                         ),
-                        child: UploadButton(
-                          onTap: () {
-                            if (_filePath != null) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      Results(image: _filePath),
-                                ),
-                              );
-                            } else {
-                              // Handle the case where _filePath is null, e.g., show an error message
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content:
-                                        Text('Please select an image first.')),
-                              );
-                            }
-                          },
-                          // onTap: () {
-                          //   // pickImage(ImageSource.gallery);
-                          //   Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             Results(image: _filePath)),
-                          //   );
-                          //   // Results();
-                          // },
-                          icon: Icon(
-                            Icons.recent_actors_outlined,
-                            color: white,
-                          ),
-                          text: 'See full Diagnostic Report',
+                        child: Column(
+                          children: [
+                            220.height(),
+                            UploadButton(
+                              onTap: () {
+                                if (_filePath != null) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          Results(image: _filePath),
+                                    ),
+                                  );
+                                } else {
+                                  // Handle the case where _filePath is null, e.g., show an error message
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            'Please select an image first.')),
+                                  );
+                                }
+                              },
+                              icon: Icon(
+                                Icons.recent_actors_outlined,
+                                color: white,
+                              ),
+                              text: 'See full Diagnostic Report',
+                            ),
+                          ],
                         ),
                       ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
                       Text(
-                        label,
+                        'Classified as: $label',
                         style: const TextStyle(
-                          fontSize: 18,
+                          color: greenColor,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(
-                        height: 70,
+                        height: 50,
                       ),
                       Text(
                         "The Accuracy is ${confidence.toStringAsFixed(0)}%",
