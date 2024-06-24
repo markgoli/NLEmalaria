@@ -110,14 +110,76 @@ class Homepage extends StatelessWidget {
                 }).toList(),
               ),
               const SizedBox(height: 20),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    //forgot password
-                  ],
-                ),
+              // const Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: 25.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     children: [
+              //       //forgot password
+              //     ],
+              //   ),
+              // ),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      Card(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const UploadImage()),
+                            );
+                          },
+                          child: ListTile(
+                            leading: Image.asset(
+                              'assets/images/microscope.png',
+                              height: 40,
+                              width: 40,
+                            ),
+                            title: Text('Diagnose'),
+                            subtitle: Text('Abnormal thyroid'),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        child: InkWell(
+                          onTap: () {},
+                          child: ListTile(
+                            leading: Icon(Icons.room_service),
+                            title: Text('Poor Nutrition'),
+                            subtitle: Text('Lack of sufficient nutrients'),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Card(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => VideoPage()),
+                            );
+                          },
+                          child: ListTile(
+                            leading: Image.asset(
+                              'assets/images/microscope.png',
+                              height: 40,
+                              width: 40,
+                            ),
+                            title: Text('Learn More'),
+                            subtitle: Text('Abnormal thyroid'),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
               const SizedBox(height: 20),
               //services
