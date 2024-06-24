@@ -9,13 +9,13 @@ model = VisionEncoderDecoderModel.from_pretrained(model_name)
 feature_extractor = ViTFeatureExtractor.from_pretrained(model_name)
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-def predict_caption(image_path):
+def predict_caption(image_path, max_length=50):
     from PIL import Image
     image = Image.open(image_path)
     if image.mode != "RGB":
         image = image.convert("RGB")
     
     pixel_values = feature_extractor(images=image, return_tensors="pt").pixel_values
-    output_ids = model.generate(pixel_values)
+    output_ids = model.generate(pixel_values, max_length=max_length)
     caption = tokenizer.decode(output_ids[0], skip_special_tokens=True)
     return caption
