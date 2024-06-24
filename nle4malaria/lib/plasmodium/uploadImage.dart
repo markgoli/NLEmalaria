@@ -181,8 +181,10 @@ class _UploadImageState extends State<UploadImage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          Results(image: _filePath),
+                                      builder: (context) => Results(
+                                        image: _filePath,
+                                        label: label,
+                                      ),
                                     ),
                                   );
                                 } else {

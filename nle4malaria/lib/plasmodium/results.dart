@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,8 +10,10 @@ import 'package:nle4malaria/styles/color.dart';
 
 class Results extends StatelessWidget {
   final File? image;
+  String label;
 
-  Results({Key? key, required this.image}) : super(key: key);
+  Results({Key? key, required this.image, required this.label})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +95,7 @@ class Results extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Classified as:',
+                        'Classified as: ',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: mainBlue,
@@ -103,7 +107,7 @@ class Results extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        ' Not Parasitized',
+                        label,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: greenColor,
@@ -146,7 +150,7 @@ class Results extends StatelessWidget {
                     },
                     text: 'Scan Again',
                     icon: Icon(
-                      Icons.camera,
+                      Icons.camera_sharp,
                       color: white,
                     ),
                   )
