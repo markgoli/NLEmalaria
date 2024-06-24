@@ -4,7 +4,7 @@ from django.db import models
 # captions/model.py
 from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, AutoTokenizer
 
-model_name = "nlpconnect/vit-gpt2-image-captioning"
+model_name = "BRIAN12682/microscopy-image-captioning"
 model = VisionEncoderDecoderModel.from_pretrained(model_name)
 feature_extractor = ViTFeatureExtractor.from_pretrained(model_name)
 tokenizer = AutoTokenizer.from_pretrained(model_name)
