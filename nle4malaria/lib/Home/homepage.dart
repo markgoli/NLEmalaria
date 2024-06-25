@@ -3,16 +3,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:nle4malaria/Home/Cards.dart';
-import 'package:nle4malaria/Home/Cards2.dart';
+import 'package:nle4malaria/Authentication/components/Cards.dart';
+import 'package:nle4malaria/Authentication/components/Cards2.dart';
 import 'package:nle4malaria/plasmodium/uploadImage.dart';
 import 'package:nle4malaria/plasmodium/common_plasmodium_types.dart';
-// import 'package:nle4malaria/Home/video.dart';
 import 'package:nle4malaria/config/extensions.dart';
 import 'package:nle4malaria/plasmodium/video.dart';
 import 'package:nle4malaria/styles/color.dart';
 import 'package:nle4malaria/styles/theme.dart';
-// import 'package:nle4malaria/Authentication/common_diseases.dart';
 
 class Homepage extends StatelessWidget {
   Homepage({super.key});
