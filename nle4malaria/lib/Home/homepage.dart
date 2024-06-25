@@ -3,8 +3,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:nle4malaria/Authentication/components/Cards.dart';
-import 'package:nle4malaria/Authentication/components/Cards2.dart';
+import 'package:nle4malaria/Services/firebase_storage_service.dart';
+import 'package:nle4malaria/components/Cards.dart';
+import 'package:nle4malaria/components/Cards2.dart';
+import 'package:nle4malaria/plasmodium/Dataset.dart';
 import 'package:nle4malaria/plasmodium/uploadImage.dart';
 import 'package:nle4malaria/plasmodium/common_plasmodium_types.dart';
 import 'package:nle4malaria/config/extensions.dart';
@@ -14,8 +16,10 @@ import 'package:nle4malaria/styles/theme.dart';
 
 class Homepage extends StatelessWidget {
   Homepage({super.key});
+  // String? _imageUrl;
 
   final user = FirebaseAuth.instance.currentUser!;
+  Future<List<String>> imageUrls = FirebaseStorageService.listAllImages();
 
   // Sign out user method
   void signUserOut() {
@@ -170,7 +174,7 @@ class Homepage extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const PlasmodiumParasiteChecker()));
+                                            DatasetGalleryScreen()));
                               },
                               text: 'Dataset',
                               icon: Icon(Icons.dataset)),
