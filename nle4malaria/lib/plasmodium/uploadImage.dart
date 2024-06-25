@@ -1,9 +1,12 @@
+// ignore_for_file: unused_field
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
-import 'package:nle4malaria/Authentication/components/Buttons.dart';
+import 'package:nle4malaria/components/Buttons.dart';
+import 'package:nle4malaria/Services/firebase_storage_service.dart';
 import 'package:nle4malaria/config/extensions.dart';
 import 'package:nle4malaria/plasmodium/results.dart';
 import 'package:nle4malaria/styles/color.dart';
@@ -17,7 +20,8 @@ class UploadImage extends StatefulWidget {
 }
 
 class _UploadImageState extends State<UploadImage> {
-  File? _filePath;
+  File? image;
+  late String _imageUrl;
   double confidence = 0.0;
   String label = '';
 
@@ -45,8 +49,16 @@ class _UploadImageState extends State<UploadImage> {
     }
 
     setState(() {
-      _filePath = File(pickedFile.path);
+      image = File(pickedFile.path);
+      uploadImageToFirebase();
     });
+
+    // if (pickedFile != null) {
+    //   setState(() {
+    //     _image = File(pickedFile.path);
+    //   });
+    //   uploadImage();
+    // }
 
     try {
       var recognitions = await Tflite.runModelOnImage(
@@ -70,6 +82,14 @@ class _UploadImageState extends State<UploadImage> {
     } catch (e) {
       devtools.log('Error running model: $e');
     }
+  }
+
+  Future uploadImageToFirebase() async {
+    if (image == null) return;
+    String imageUrl = await FirebaseStorageService.uploadFile(image!);
+    setState(() {
+      _imageUrl = imageUrl;
+    });
   }
 
   @override
@@ -119,7 +139,7 @@ class _UploadImageState extends State<UploadImage> {
             children: [
               Container(
                 color: Color.fromRGBO(98, 149, 162, 1),
-                child: _filePath == null
+                child: image == null
                     ? Column(
                         children: [
                           const SizedBox(
@@ -158,14 +178,15 @@ class _UploadImageState extends State<UploadImage> {
                           // color: lightBlue,
                           borderRadius: BorderRadius.circular(12),
                           shape: BoxShape.rectangle,
-                          image: _filePath == null
+                          image: image == null
                               ? const DecorationImage(
                                   image: AssetImage('assets/upload.jpg'),
                                 )
                               : DecorationImage(
                                   image: FileImage(
-                                    _filePath!,
+                                    image!,
                                   ),
+                                  // image: Image.network(_imageUrl),
                                   fit: BoxFit.fill,
                                 ),
                         ),
@@ -174,12 +195,12 @@ class _UploadImageState extends State<UploadImage> {
                             220.height(),
                             UploadButton(
                               onTap: () {
-                                if (_filePath != null) {
+                                if (image != null) {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => Results(
-                                        image: _filePath,
+                                        image: image,
                                         label: label,
                                       ),
                                     ),

@@ -62,7 +62,8 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                     Text(
                       'Natural Language Explanations',
-                      style: AppTheme.subTitleStyle(color: white, isBold: true),
+                      style:
+                          AppTheme.subTitleStyle(color: mainBlue, isBold: true),
                     ),
                   ],
                 ),
@@ -71,39 +72,6 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
       ),
-
-      // body: Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       Stack(
-      //         children: [
-      //           Image(image: AssetImage('assets/images/splach.jpg')),
-      //           Center(
-      //             child: Text(
-      //               'Malaria Microscopy',
-      //               style:
-      //                   TextStyle(backgroundColor: Colors.white, fontSize: 30),
-      //             ),
-      //           )
-      //         ],
-      //       )
-      //       // const SizedBox(
-      //       //     width: 300,
-      //       //     height: 300,
-      //       //     child: Image(image: AssetImage('assets/images/icon.webp'))),
-
-      //       // Text(
-      //       //   'Malaria',
-      //       //   // style: AppTheme.splashScreenStyle(color: whiteColor),
-      //       // ),
-      //       // Text(
-      //       //   'For a Better Life!.',
-      //       //   // style: AppTheme.titleStyle(color: primaryColor),
-      //       // )
-      //     ],
-      //   ),
-      // ),
     );
   }
 

@@ -3,7 +3,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:nle4malaria/Authentication/components/Buttons.dart';
+import 'package:nle4malaria/components/Buttons.dart';
 import 'package:nle4malaria/config/extensions.dart';
 import 'package:nle4malaria/plasmodium/uploadImage.dart';
 import 'package:nle4malaria/styles/color.dart';
