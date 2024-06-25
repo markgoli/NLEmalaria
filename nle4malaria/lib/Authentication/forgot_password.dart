@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:nle4malaria/Authentication/components/my_button.dart';
+import 'package:nle4malaria/components/my_button.dart';
 import 'package:nle4malaria/styles/color.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
