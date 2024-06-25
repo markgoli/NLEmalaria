@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:nle4malaria/Authentication/components/Buttons.dart';
@@ -9,8 +8,6 @@ import 'package:nle4malaria/config/extensions.dart';
 import 'package:nle4malaria/plasmodium/results.dart';
 import 'package:nle4malaria/styles/color.dart';
 import 'dart:developer' as devtools;
-
-import 'package:nle4malaria/styles/theme.dart';
 
 class UploadImage extends StatefulWidget {
   const UploadImage({super.key});
@@ -129,34 +126,34 @@ class _UploadImageState extends State<UploadImage> {
                             height: 30,
                           ),
                           Image.asset(
-                            'assets/images/upload2.png',
-                            height: 100,
+                            'assets/images/setup.png',
+                            height: 250,
+                          ),
+
+                          // Text(
+                          //   'Place your phone camera to the eyepiece of your microscope.',
+                          //   textAlign: TextAlign.center,
+                          //   style: AppTheme.subTitleStyle(
+                          //       color: mainBlue, isBold: false),
+                          // ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: const Text(
+                              'Place your phone camera to the eyepiece of your microscope, capture the image and upload it for prediction and classification.',
+                              style: TextStyle(fontSize: 12, color: mainBlue),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                           const SizedBox(
                             height: 20,
-                          ),
-                          Text(
-                            'Place your phone camera to the eyepiece of your microscope.',
-                            textAlign: TextAlign.center,
-                            style: AppTheme.subTitleStyle(
-                                color: mainBlue, isBold: false),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          const Text(
-                            'Place your phone camera to the eyepiece of your microscope, capture the image and upload it for prediction and classification.',
-                            style: TextStyle(fontSize: 10, color: mainBlue),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(
-                            height: 30,
                           ),
                         ],
                       )
                     : Container(
                         height: 280,
                         width: 280,
+                        margin: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           // color: lightBlue,
                           borderRadius: BorderRadius.circular(12),

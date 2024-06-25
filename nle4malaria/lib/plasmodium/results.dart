@@ -49,15 +49,15 @@ class Results extends StatelessWidget {
       ),
       body: Container(
         decoration: BoxDecoration(
-          color: bgColor,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              spreadRadius: 2,
-              blurRadius: 8,
-              offset: const Offset(2, 2),
-            ),
-          ],
+          color: lightBlue,
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.black.withOpacity(0.2),
+          //     spreadRadius: 2,
+          //     blurRadius: 8,
+          //     offset: const Offset(2, 2),
+          //   ),
+          // ],
         ),
         child: Column(
           children: [
@@ -66,28 +66,34 @@ class Results extends StatelessWidget {
               decoration: BoxDecoration(
                 color: lightBlue,
                 borderRadius: BorderRadius.circular(4),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 2,
-                    blurRadius: 8,
-                    offset: const Offset(2, 2),
-                  ),
-                ],
+                // boxShadow: [
+                //   BoxShadow(
+                //     color: Colors.black.withOpacity(0.2),
+                //     spreadRadius: 2,
+                //     blurRadius: 8,
+                //     offset: const Offset(2, 2),
+                //   ),
+                // ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    height: 280,
+                    height: 300,
                     width: 300,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                    child: Image.file(
-                      image!,
-                      width: 340,
-                      height: 320,
-                      fit: BoxFit.fill,
+                    margin: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: grey2,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.file(
+                        image!,
+                        // width: 34,
+                        // height: 34,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -140,7 +146,7 @@ class Results extends StatelessWidget {
                       ),
                     ),
                   ),
-                  60.height(),
+                  100.height(),
                   UploadButton(
                     onTap: () {
                       Navigator.push(

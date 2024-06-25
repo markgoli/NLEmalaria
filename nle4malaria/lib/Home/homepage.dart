@@ -3,9 +3,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:nle4malaria/Home/Cards.dart';
+import 'package:nle4malaria/Home/Cards2.dart';
 import 'package:nle4malaria/plasmodium/uploadImage.dart';
 import 'package:nle4malaria/plasmodium/common_plasmodium_types.dart';
-import 'package:nle4malaria/Authentication/components/my_secondButton.dart';
 // import 'package:nle4malaria/Home/video.dart';
 import 'package:nle4malaria/config/extensions.dart';
 import 'package:nle4malaria/plasmodium/video.dart';
@@ -35,7 +36,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(98, 149, 162, 1),
+        backgroundColor: mainAppColor,
         title: Center(
           child: Text(
             'Hi, ${user.email!}',
@@ -66,9 +67,12 @@ class Homepage extends StatelessWidget {
                 width: 50,
               ),
               Text(
-                'Malaria Microscopy.',
+                'Malaria Microscopy',
                 style: TextStyle(
-                    fontFamily: 'roboto', fontSize: 15, color: mainBlue),
+                    fontFamily: 'roboto',
+                    fontSize: 15,
+                    color: mainBlue,
+                    fontWeight: FontWeight.bold),
               ),
               CarouselSlider(
                 options: CarouselOptions(
@@ -78,16 +82,17 @@ class Homepage extends StatelessWidget {
                   aspectRatio: 16 / 9,
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 1000),
                   viewportFraction: 0.8,
                 ),
                 items: [
+                  'assets/images/front.png',
+                  'assets/images/setup.png',
                   'assets/images/stages.jpg',
                   'assets/images/falcipalam.jpeg',
-                  'assets/images/distribution.jpg',
                   'assets/images/plasm_types2.jpeg',
+                  'assets/images/distribution.jpg',
                   'assets/images/mosquito.webp',
-                  // VideoPage()
                 ].map((imagePath) {
                   return Builder(
                     builder: (BuildContext context) {
@@ -109,109 +114,84 @@ class Homepage extends StatelessWidget {
                   );
                 }).toList(),
               ),
-              const SizedBox(height: 20),
-              // const Padding(
-              //   padding: EdgeInsets.symmetric(horizontal: 25.0),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.start,
-              //     children: [
-              //       //forgot password
-              //     ],
-              //   ),
-              // ),
-              Column(
-                children: [
-                  Row(
+              Container(
+                width: 300,
+                height: 250,
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: mainAppColor),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
                     children: [
-                      Card(
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const UploadImage()),
-                            );
-                          },
-                          child: ListTile(
-                            leading: Image.asset(
-                              'assets/images/microscope.png',
-                              height: 40,
-                              width: 40,
-                            ),
-                            title: Text('Diagnose'),
-                            subtitle: Text('Abnormal thyroid'),
+                      Center(
+                          child: Text(
+                        'Menu',
+                        style: TextStyle(
+                            color: mainBlue,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Roboto',
+                            fontSize: 20),
+                      )),
+                      10.height(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MySecCard(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const UploadImage()));
+                            },
+                            text: 'Diagnose',
+                            path: 'assets/images/side.png',
                           ),
-                        ),
+                          40.width(),
+                          MyCard(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PlasmodiumParasiteChecker()));
+                              },
+                              text: 'Plasmodium types',
+                              icon: Icon(Icons.bug_report)),
+                        ],
                       ),
-                      Card(
-                        child: InkWell(
-                          onTap: () {},
-                          child: ListTile(
-                            leading: Icon(Icons.room_service),
-                            title: Text('Poor Nutrition'),
-                            subtitle: Text('Lack of sufficient nutrients'),
-                          ),
-                        ),
+                      10.height(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MyCard(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PlasmodiumParasiteChecker()));
+                              },
+                              text: 'Dataset',
+                              icon: Icon(Icons.dataset)),
+                          20.width(),
+                          MyCard(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => VideoPage()));
+                              },
+                              text: 'Want to Learn more?',
+                              icon: Icon(Icons.video_file_rounded)),
+                        ],
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Card(
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => VideoPage()),
-                            );
-                          },
-                          child: ListTile(
-                            leading: Image.asset(
-                              'assets/images/microscope.png',
-                              height: 40,
-                              width: 40,
-                            ),
-                            title: Text('Learn More'),
-                            subtitle: Text('Abnormal thyroid'),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
+                ),
               ),
-              const SizedBox(height: 20),
-              //services
-              MySecondButton(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const UploadImage()),
-                    );
-                  },
-                  text: 'Plasmodium Check'),
-              const SizedBox(height: 20),
-              MySecondButton(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const PlasmodiumParasiteChecker()),
-                    );
-                  },
-                  text: 'Plasmodium Types'),
-              const SizedBox(height: 20),
-              MySecondButton(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => VideoPage()),
-                    );
-                  },
-                  text: 'Learn more')
             ],
           ),
         ),
@@ -232,7 +212,7 @@ class Homepage extends StatelessWidget {
             label: 'Notifications',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
+            icon: Icon(Icons.miscellaneous_services_sharp),
             label: 'Settings',
           ),
         ],
@@ -244,3 +224,37 @@ class Homepage extends StatelessWidget {
     );
   }
 }
+
+// Column homepageicons(
+//   IconData icons,
+//   String action,
+// ) {
+//   return Column(
+//     children: [
+//       Container(
+//         height: 60,
+//         width: 60,
+//         decoration: BoxDecoration(
+//             borderRadius: BorderRadius.circular(15), color: cream),
+//         child: Center(
+//           child: IconButton(
+//             color: mainBlue,
+//             iconSize: 30,
+//             onPressed: () {
+//               //todo: action
+//             },
+//             icon: Icon(icons),
+//           ),
+//         ),
+//       ),
+//       const SizedBox(
+//         height: 5,
+//       ),
+//       Text(
+//         action,
+//         style: const TextStyle(
+//             color: black, fontWeight: FontWeight.w400, fontSize: 15),
+//       ),
+//     ],
+//   );
+// }

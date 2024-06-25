@@ -15,8 +15,14 @@ class VideoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: bgColor,
-        title: const Text("Plasmodium types Explained."),
+        backgroundColor: mainBlue,
+        title: const Text(
+          "Visual Explanatuions.",
+          style: TextStyle(
+              color: whiteColor,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       body: Center(

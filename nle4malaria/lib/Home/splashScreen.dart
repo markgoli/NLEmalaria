@@ -24,25 +24,27 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Size screensize = MediaQuery.of(context).size;
+    // final Size screensize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 23, 18, 90),
+      backgroundColor: mainAppColor,
       body: SingleChildScrollView(
         child: Container(
-          width: screensize.width,
-          height: screensize.height,
+          width: 370,
+          height: 1000,
           child: Stack(
             children: [
               Image.asset(
-                'assets/images/splach.jpg',
-                width: screensize.width,
-                height: screensize.height,
+                'assets/images/setup.png',
+                // width: screensize.widprimaryColorth,
+                // height: screensize.height,
+                width: 370,
+                height: 600,
                 fit: BoxFit.cover,
               ),
               Center(
                 child: Column(
                   children: [
-                    560.height(),
+                    620.height(),
                     Text(
                       'Malaria',
                       style: AppTheme.splashScreenStyle(
@@ -60,8 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                     Text(
                       'Natural Language Explanations',
-                      style: AppTheme.subTitleStyle(
-                          color: primaryColor, isBold: true),
+                      style: AppTheme.subTitleStyle(color: white, isBold: true),
                     ),
                   ],
                 ),

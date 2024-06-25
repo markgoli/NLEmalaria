@@ -33,3 +33,5 @@ Color lightBlue = Color.fromRGBO(226, 229, 231, 1);
 Color lightgreen = Color.fromRGBO(149, 210, 179, 1);
 Color lightcyan = Color.fromRGBO(85, 173, 155, 1);
 const Color grey2 = Color.fromARGB(255, 223, 217, 217);
+
+Color mainAppColor = Color.fromRGBO(98, 149, 162, 1);
