@@ -2,12 +2,12 @@ from django.db import models
 
 # Create your models here.
 # captions/model.py
-from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, AutoTokenizer
+from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, GPT2Tokenizer
 
 model_name = "BRIAN12682/microscopy-image-captioning"
 model = VisionEncoderDecoderModel.from_pretrained(model_name)
 feature_extractor = ViTFeatureExtractor.from_pretrained(model_name)
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 
 def predict_caption(image_path, max_length=50):
     from PIL import Image

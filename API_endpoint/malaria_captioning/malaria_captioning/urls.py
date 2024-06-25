@@ -27,4 +27,16 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('captions.urls')),
+    path('', include('captions.urls')), 
 ]
+
+# # image_captioning/urls.py
+# from django.contrib import admin
+# from django.urls import path, include
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('api/', include('captions.urls')),
+#     path('', include('captions.urls')),  # Add this line to serve web pages from the root URL
+# ]
+

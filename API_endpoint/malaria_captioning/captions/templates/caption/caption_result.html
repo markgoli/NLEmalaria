@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Captioning Result</title>
+</head>
+<body>
+    <h1>Image Caption</h1>
+    <p>{{ caption }}</p>
+    <img src="{{ image_url }}" alt="Uploaded Image">
+    <br>
+    <a href="{% url 'caption_image_web' %}">Upload Another Image</a>
+</body>
+</html>
