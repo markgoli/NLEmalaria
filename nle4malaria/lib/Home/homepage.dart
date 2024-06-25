@@ -160,7 +160,7 @@ class Homepage extends StatelessWidget {
                                         builder: (context) =>
                                             const PlasmodiumParasiteChecker()));
                               },
-                              text: 'Plasmodium types',
+                              text: 'Sensitization',
                               icon: Icon(Icons.bug_report)),
                         ],
                       ),
