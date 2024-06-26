@@ -143,7 +143,7 @@ class MyHomePage2 extends StatelessWidget {
                                                 BorderRadius.circular(8),
                                           ),
                                           child: Image.asset(imagePath,
-                                              fit: BoxFit.cover),
+                                              fit: BoxFit.fitWidth),
                                         ),
                                       );
                                     },

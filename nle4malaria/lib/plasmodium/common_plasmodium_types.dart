@@ -44,7 +44,9 @@ class PlasmodiumParasiteChecker extends StatelessWidget {
                       image: DecorationImage(
                           image: AssetImage('assets/images/silver.webp'),
                           fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(9),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(50),
+                          bottomRight: Radius.circular(50)),
                       color: lightBlue.withOpacity(0.1),
                     ),
                     child: Container(
