@@ -22,12 +22,16 @@
 
 
 # captions/model.py
+# captions/model.py
+
+
+
 from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, AutoTokenizer
 import os
 
 # Ensure the model is downloaded
-from download_model import download_model_from_gdrive
-download_model_from_gdrive()
+from download_model import download_model_files
+download_model_files()
 
 model_path = "vitgpt_model"  # Path where the model is saved after download
 
