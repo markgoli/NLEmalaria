@@ -21,13 +21,22 @@ class MyCard extends StatelessWidget {
           height: 60,
           width: 70,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15), color: mainBlue),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(
+              color: mainAppColor2, // Color of the border
+              width: 1, // Width of the border
+            ),
+            color: mainAppColor2.withOpacity(0.4),
+          ),
           child: Center(
-            child: IconButton(
-              color: white,
-              iconSize: 50,
-              onPressed: onTap,
-              icon: icon,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: IconButton(
+                color: white,
+                iconSize: 50,
+                onPressed: onTap,
+                icon: icon,
+              ),
             ),
           ),
         ),
@@ -37,7 +46,7 @@ class MyCard extends StatelessWidget {
         Text(
           text,
           style: const TextStyle(
-              color: mainBlue, fontWeight: FontWeight.w400, fontSize: 12),
+              color: white, fontWeight: FontWeight.w400, fontSize: 12),
         ),
       ],
     );
