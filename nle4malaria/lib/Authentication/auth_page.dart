@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nle4malaria/Home/homepage.dart';
 import 'package:nle4malaria/Authentication/login_or_register.dart';
+import 'package:nle4malaria/Home/homepage2.dart';
 //import 'package:nle4malaria/Authentication/login_page.dart';
 
 class AuthPage extends StatelessWidget {
@@ -16,7 +17,7 @@ class AuthPage extends StatelessWidget {
           //user logged in
 
           if (snapshot.hasData) {
-            return Homepage();
+            return MyHomePage2();
           }
           //user not logged in
           else {

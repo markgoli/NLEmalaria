@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nle4malaria/config/extensions.dart';
@@ -36,57 +37,65 @@ class PlasmodiumParasiteChecker extends StatelessWidget {
               mainAxisSpacing: 5,
               crossAxisCount: 1,
               children: <Widget>[
-                Container(
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(9),
-                    color: lightBlue,
-                  ),
-                  child: Column(
-                    children: [
-                      20.height(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                Stack(children: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/silver.webp'),
+                          fit: BoxFit.cover),
+                      borderRadius: BorderRadius.circular(9),
+                      color: lightBlue.withOpacity(0.1),
+                    ),
+                    child: Container(
+                      color: lightBlue.withOpacity(0.8),
+                      child: Column(
                         children: [
-                          Container(
-                              child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Text(
-                              'Malaria',
-                              style: TextStyle(
-                                color: mainAppColor2,
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Arial',
+                          20.height(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  child: Padding(
+                                padding: const EdgeInsets.all(9.0),
+                                child: Text(
+                                  'Malaria',
+                                  style: TextStyle(
+                                    color: mainAppColor2,
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Arial',
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ))
+                            ],
+                          ),
+                          20.height(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 220,
+                                width: 300,
+                                child: Text(
+                                  'Malaria, a life-threatening disease transmitted through the bite of an infected Anopheles mosquito, is caused by parasitic protozoans belonging to the genus Plasmodium. Four primary species are notorious for infecting humans: Plasmodium falciparum, Plasmodium malariae, Plasmodium ovale, and Plasmodium vivax. Each species exhibits unique characteristics and structural adaptations that enable their survival and propagation within both the mosquito and human hosts.',
+                                  style: const TextStyle(
+                                    color: mainBlue,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Roboto',
+                                  ),
+                                  textAlign: TextAlign.justify,
+                                ),
                               ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ))
-                        ],
-                      ),
-                      20.height(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 200,
-                            width: 300,
-                            child: Text(
-                              'Malaria, a life-threatening disease transmitted through the bite of an infected Anopheles mosquito, is caused by parasitic protozoans belonging to the genus Plasmodium. Four primary species are notorious for infecting humans: Plasmodium falciparum, Plasmodium malariae, Plasmodium ovale, and Plasmodium vivax. Each species exhibits unique characteristics and structural adaptations that enable their survival and propagation within both the mosquito and human hosts.',
-                              style: const TextStyle(
-                                color: mainBlue,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Roboto',
-                              ),
-                              textAlign: TextAlign.justify,
-                            ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ]),
                 // _buildDiseaseContainer('assets/images/Types_of_Malaria.webp',
                 //     'Types of Malaria', ''),
                 _buildDiseaseContainer(
