@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nle4malaria/components/my_button.dart';
 import 'package:nle4malaria/components/my_textfield.dart';
@@ -136,41 +137,79 @@ class _RegisterPage extends State<RegisterPage> {
       backgroundColor: bg2Color,
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Center(
+          child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                //welcome Text
-                const SizedBox(
-                    child: Text(
-                  'Welcome',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: mainBlue,
-                  ),
-                )),
-                const SizedBox(
-                  height: 30,
-                ),
+                Container(
+                  height: 270,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(50),
+                          bottomRight: Radius.circular(50)),
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/register.webp'),
+                          fit: BoxFit.cover)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //welcome Text
+                      Container(
+                        margin: EdgeInsets.only(top: 50, bottom: 50, right: 20),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.black.withOpacity(0.8)),
+                        child: Center(
+                          child: const SizedBox(
+                              child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'MicroMalaria\nInsights!',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: white,
+                              ),
+                            ),
+                          )),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
 
-                //logo
-                Image.asset(
-                  'assets/images/microscope.png',
-                  height: 80,
+                      //logo
+                      Container(
+                          margin: EdgeInsets.all(5),
+                          height: 200,
+                          width: 180,
+                          decoration: BoxDecoration(
+                              color: mainAppColor.withOpacity(0.95),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Discover the critical world of malaria microscopy with the power of advanced technology at your fingertips. Our app leverages cutting-edge imaging and artificial intelligence to provide detailed, natural language explanations of malaria microscopy images, helping you understand and diagnose malaria with unprecedented clarity and precision.',
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: white,
+                                  fontWeight: FontWeight.w500),
+                              textAlign: TextAlign.center,
+                            ),
+                          )),
+                    ],
+                  ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 10,
                 ),
-                const Text(
+                Text(
                   'Create your account here.',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: (mainBlue),
+                    color: (mainAppColor2),
                   ),
                 ),
 
@@ -186,7 +225,7 @@ class _RegisterPage extends State<RegisterPage> {
                 ),
 
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 //Password text box
                 MyTextField1(
@@ -195,7 +234,7 @@ class _RegisterPage extends State<RegisterPage> {
                   obscureText: true,
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 //Confirm Password text box
                 MyTextField1(
@@ -207,21 +246,6 @@ class _RegisterPage extends State<RegisterPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                // const Padding(
-                //   padding: EdgeInsets.symmetric(horizontal: 25.0),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.end,
-                //     children: [
-                //       Text(
-                //         'Forgot Password?',
-                //         style: TextStyle(
-                //             color: (Color(0xFF063509)),
-                //             fontWeight: FontWeight.bold),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                const SizedBox(height: 10),
 
                 //login button
                 MyButton(
@@ -229,7 +253,7 @@ class _RegisterPage extends State<RegisterPage> {
                   text: 'SignUp',
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
 
                 //continue with
@@ -309,12 +333,13 @@ class _RegisterPage extends State<RegisterPage> {
                         children: [
                           TextSpan(
                             text: "Already have an account? ",
-                            style: AppTheme.titleStyle2(isBold: true),
+                            style: AppTheme.titleStyle2(
+                                isBold: true, color: mainAppColor),
                           ),
                           TextSpan(
                             text: "Login Now",
                             style: AppTheme.titleStyle(
-                                color: mainBlue, isBold: true),
+                                color: primaryColor, isBold: true),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 context.go('/login_screen');

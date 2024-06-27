@@ -8,6 +8,7 @@ import 'package:nle4malaria/components/my_textfield1.dart';
 import 'package:nle4malaria/components/square_tile.dart';
 import 'package:nle4malaria/Authentication/forgot_password.dart';
 import 'package:nle4malaria/Services/authservice.dart';
+import 'package:nle4malaria/config/extensions.dart';
 import 'package:nle4malaria/styles/color.dart';
 import 'package:nle4malaria/styles/theme.dart';
 
@@ -132,31 +133,69 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                //welcome Text
-                const SizedBox(
-                    child: Text(
-                  'Welcome',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: mainBlue,
-                  ),
-                )),
-                const SizedBox(
-                  height: 30,
-                ),
+                Container(
+                  height: 270,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(50),
+                          bottomRight: Radius.circular(50)),
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/register2.webp'),
+                          fit: BoxFit.cover)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //welcome Text
+                      Container(
+                        margin: EdgeInsets.only(top: 50, bottom: 50, right: 20),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.black.withOpacity(0.2)),
+                        child: Center(
+                          child: const SizedBox(
+                              child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Login Here',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: white,
+                              ),
+                            ),
+                          )),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
 
-                //logo
-                Image.asset(
-                  'assets/images/microscope.png',
-                  height: 80,
+                      //logo
+                      Container(
+                          margin: EdgeInsets.all(5),
+                          height: 200,
+                          width: 180,
+                          decoration: BoxDecoration(
+                              color: white.withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                "Join us on a journey of scientific discovery and innovation. Whether you're a healthcare professional, researcher, or student, MicroMalaria Insights offers a unique educational tool that enhances your understanding of one of the world's most significant infectious diseases.",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: mainAppColor2,
+                                    fontWeight: FontWeight.w600),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 50,
-                ),
+                30.height(),
                 //email text box
                 MyTextField(
                   controller: emailController,
@@ -279,7 +318,7 @@ class _LoginPageState extends State<LoginPage> {
                           TextSpan(
                             text: "SignUp.",
                             style: AppTheme.titleStyle(
-                                color: mainBlue, isBold: true),
+                                color: primaryColor, isBold: true),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 context.go('/register_page');
@@ -288,19 +327,6 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                     ),
-                    // const Text('Not a member?'),
-                    // const SizedBox(
-                    //   width: 10,
-                    // ),
-                    // GestureDetector(
-                    //   onTap: widget.onTap,
-                    //   child: const Text(
-                    //     'Register now',
-                    //     style: TextStyle(
-                    //         color: (Color(0xFF063509)),
-                    //         fontWeight: FontWeight.bold),
-                    //   ),
-                    // )
                   ],
                 ),
                 const SizedBox(

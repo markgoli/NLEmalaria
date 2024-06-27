@@ -1,4 +1,3 @@
-import 'package:nle4malaria/styles/color.dart';
 import 'package:nle4malaria/styles/font_size.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,7 @@ class AppTheme {
   static TextStyle titleStyle2({Color? color, bool? isBold = false}) =>
       TextStyle(
           fontSize: titleSize,
-          color: blackColor,
+          // color: blackColor,
           fontWeight: isBold! ? FontWeight.bold : FontWeight.normal);
 
   static TextStyle subTitleStyle({Color? color, bool? isBold = false}) =>

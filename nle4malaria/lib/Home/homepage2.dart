@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nle4malaria/components/Cards.dart';
 import 'package:nle4malaria/components/Cards2.dart';
@@ -10,6 +11,11 @@ import 'package:nle4malaria/plasmodium/video.dart';
 import 'package:nle4malaria/styles/color.dart';
 
 class MyHomePage2 extends StatelessWidget {
+  // Sign out user method
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +34,7 @@ class MyHomePage2 extends StatelessWidget {
                     color: mainAppColor2,
                     fontFamily: 'Roboto',
                     fontStyle: FontStyle.normal,
-                    fontSize: 15,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold),
               ),
               background: Image.asset(
@@ -49,17 +55,21 @@ class MyHomePage2 extends StatelessWidget {
             actions: <Widget>[
               IconButton(
                 color: mainAppColor2,
-                icon: Icon(Icons.search_outlined), // Action icon for searching
-                onPressed: () {
-                  // Handle search icon press
-                },
-              ),
-              IconButton(
-                color: mainAppColor2,
                 icon: Icon(Icons
                     .notifications_none_outlined), // Another action icon for notifications
                 onPressed: () {
                   // Handle notifications icon press
+                },
+              ),
+              IconButton(
+                color: mainAppColor2,
+                icon: Image.asset(
+                  'assets/images/logout.png',
+                  height: 30,
+                  width: 30,
+                ),
+                onPressed: () {
+                  signUserOut();
                 },
               ),
             ],
@@ -106,12 +116,13 @@ class MyHomePage2 extends StatelessWidget {
                                   viewportFraction: 1,
                                 ),
                                 items: [
+                                  'assets/images/black.webp',
+                                  'assets/images/real.webp',
                                   'assets/images/front.png',
                                   'assets/images/setup.png',
-                                  'assets/images/stages.jpg',
-                                  'assets/images/falcipalam.jpeg',
-                                  'assets/images/plasm_types2.jpeg',
-                                  'assets/images/distribution.jpg',
+                                  'assets/images/person.webp',
+                                  'assets/images/real.webp',
+                                  'assets/images/silver.webp',
                                   'assets/images/mosquito.webp',
                                 ].map((imagePath) {
                                   return Builder(
@@ -147,7 +158,7 @@ class MyHomePage2 extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(12),
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/real.webp'),
+                                            'assets/images/person.webp'),
                                         fit: BoxFit.cover),
                                     color: mainAppColor),
                                 child: Stack(children: [
