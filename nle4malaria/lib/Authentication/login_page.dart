@@ -174,8 +174,8 @@ class _LoginPageState extends State<LoginPage> {
                       //logo
                       Container(
                           margin: EdgeInsets.all(5),
-                          height: 200,
-                          width: 180,
+                          height: 210,
+                          width: 190,
                           decoration: BoxDecoration(
                               color: white.withOpacity(0.8),
                               borderRadius: BorderRadius.circular(20)),
@@ -185,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: Text(
                                 "Join us on a journey of scientific discovery and innovation. Whether you're a healthcare professional, researcher, or student, MicroMalaria Insights offers a unique educational tool that enhances your understanding of one of the world's most significant infectious diseases.",
                                 style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 11,
                                     color: mainAppColor2,
                                     fontWeight: FontWeight.w600),
                                 textAlign: TextAlign.center,

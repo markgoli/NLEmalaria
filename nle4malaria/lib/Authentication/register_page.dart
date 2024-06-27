@@ -181,21 +181,23 @@ class _RegisterPage extends State<RegisterPage> {
 
                       //logo
                       Container(
-                          margin: EdgeInsets.all(5),
-                          height: 200,
-                          width: 180,
+                          margin: EdgeInsets.all(2),
+                          height: 210,
+                          width: 190,
                           decoration: BoxDecoration(
                               color: mainAppColor.withOpacity(0.95),
                               borderRadius: BorderRadius.circular(20)),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Discover the critical world of malaria microscopy with the power of advanced technology at your fingertips. Our app leverages cutting-edge imaging and artificial intelligence to provide detailed, natural language explanations of malaria microscopy images, helping you understand and diagnose malaria with unprecedented clarity and precision.',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: white,
-                                  fontWeight: FontWeight.w500),
-                              textAlign: TextAlign.center,
+                            child: Center(
+                              child: Text(
+                                'Discover the critical world of malaria microscopy with the power of advanced technology at your fingertips. Our app leverages cutting-edge imaging and artificial intelligence to provide detailed, natural language explanations of malaria microscopy images, helping you understand and diagnose malaria with unprecedented clarity and precision.',
+                                style: TextStyle(
+                                    fontSize: 11,
+                                    color: white,
+                                    fontWeight: FontWeight.w500),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           )),
                     ],
