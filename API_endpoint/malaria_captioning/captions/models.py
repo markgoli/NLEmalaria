@@ -2,12 +2,13 @@
 
 # Create your models here.
 # captions/model.py
-from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, GPT2Tokenizer
+from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, GPT2Tokenizer, ViTImageProcessor
 
 # model_name = "BRIAN12682/microscopy-image-captioning"
 model_name = "BRIAN12682/malaria-captioning-v2"
 model = VisionEncoderDecoderModel.from_pretrained(model_name)
-feature_extractor = ViTFeatureExtractor.from_pretrained(model_name)
+#feature_extractor = ViTFeatureExtractor.from_pretrained(model_name)
+image_processor = ViTImageProcessor.from_pretrained(model_name)
 tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 
 def predict_caption(image_path, max_length=50):
