@@ -17,7 +17,17 @@ def download_and_reassemble_model():
         {"file_name": "model.safetensors.part-ag", "file_id": "your_file_id_for_part_ag"},
         {"file_name": "model.safetensors.part-ah", "file_id": "your_file_id_for_part_ah"},
         {"file_name": "model.safetensors.part-ai", "file_id": "your_file_id_for_part_ai"},
-        {"file_name": "model.safetensors.part-aj", "file_id": "your_file_id_for_part_aj"}
+        {"file_name": "model.safetensors.part-aj", "file_id": "your_file_id_for_part_aj"},
+        {"file_name": "model.safetensors.part-ak", "file_id": "your_file_id_for_part_ak"},
+        {"file_name": "model.safetensors.part-al", "file_id": "your_file_id_for_part_al"},
+        {"file_name": "model.safetensors.part-am", "file_id": "your_file_id_for_part_am"},
+        {"file_name": "model.safetensors.part-an", "file_id": "your_file_id_for_part_an"},
+        {"file_name": "model.safetensors.part-ao", "file_id": "your_file_id_for_part_ao"},
+        {"file_name": "model.safetensors.part-ap", "file_id": "your_file_id_for_part_ap"},
+        {"file_name": "model.safetensors.part-aq", "file_id": "your_file_id_for_part_aq"},
+        {"file_name": "model.safetensors.part-ar", "file_id": "your_file_id_for_part_ar"},
+        {"file_name": "model.safetensors.part-as", "file_id": "your_file_id_for_part_as"},
+        {"file_name": "model.safetensors.part-at", "file_id": "your_file_id_for_part_at"}
         # Add more chunks as needed
     ]
 
