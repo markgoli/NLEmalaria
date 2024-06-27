@@ -11,6 +11,8 @@ import 'package:nle4malaria/plasmodium/video.dart';
 import 'package:nle4malaria/styles/color.dart';
 
 class MyHomePage2 extends StatelessWidget {
+  // user instance
+  final user = FirebaseAuth.instance.currentUser!;
   // Sign out user method
   void signUserOut() {
     FirebaseAuth.instance.signOut();
@@ -103,6 +105,7 @@ class MyHomePage2 extends StatelessWidget {
                               color: white),
                           child: Column(
                             children: [
+                              Text('Hi, ${user.displayName}'),
                               CarouselSlider(
                                 options: CarouselOptions(
                                   height: 290,

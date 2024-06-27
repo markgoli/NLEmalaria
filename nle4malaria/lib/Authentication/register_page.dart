@@ -8,6 +8,7 @@ import 'package:nle4malaria/components/my_textfield.dart';
 import 'package:nle4malaria/components/my_textfield1.dart';
 import 'package:nle4malaria/components/square_tile.dart';
 import 'package:nle4malaria/Services/authservice.dart';
+import 'package:nle4malaria/config/extensions.dart';
 import 'package:nle4malaria/styles/color.dart';
 import 'package:nle4malaria/styles/theme.dart';
 
@@ -21,6 +22,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPage extends State<RegisterPage> {
   //Text Editing Controller
+  final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmpasswordController = TextEditingController();
@@ -86,10 +88,13 @@ class _RegisterPage extends State<RegisterPage> {
 
     // Try sign up
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
+      // setting a username
+      result.user!.updateDisplayName(usernameController.text.trim());
+      // _updateState();
       // Close loading dialog
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
@@ -131,6 +136,12 @@ class _RegisterPage extends State<RegisterPage> {
         });
   }
 
+  // _updateState() {
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     notifyListeners();
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,7 +153,7 @@ class _RegisterPage extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 270,
+                  height: 230,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(50),
@@ -216,9 +227,15 @@ class _RegisterPage extends State<RegisterPage> {
                 ),
 
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
-
+                // username text box
+                MyTextField(
+                  controller: usernameController,
+                  hintText: 'Username',
+                  obscureText: false,
+                ),
+                10.height(),
                 //email text box
                 MyTextField(
                   controller: emailController,
