@@ -143,3 +143,13 @@ MEDIA_URL = '/media/'
 
 # Ensure BASE_DIR is defined at the top of settings.py
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import os
+
+# Suppress TensorFlow warnings
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
+# settings.py
+
+CELERY_BROKER_URL = 'redis://default:BSxz7doCSwD5Iku6VroSATa40dnmXkdd@redis-17812.c267.us-east-1-4.ec2.redns.redis-cloud.com:17812/0'
+CELERY_RESULT_BACKEND = 'redis://default:BSxz7doCSwD5Iku6VroSATa40dnmXkdd@redis-17812.c267.us-east-1-4.ec2.redns.redis-cloud.com:17812/0'
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
