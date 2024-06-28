@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigate() {
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 3), () {
       // return AuthPage();
       if (FirebaseAuth.instance.currentUser != null) {
         context.go('/homepage');
