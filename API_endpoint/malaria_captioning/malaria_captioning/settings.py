@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'captions',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,24 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# image_captioning/settings.py
+# Configure caching
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
+# image_captioning/settings.py
+
+STATIC_URL = '/static/'
+# STATIC_ROOT = '/path/to/staticfiles'  # Ensure this is set correctly
+import os
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+# Ensure BASE_DIR is defined at the top of settings.py
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
