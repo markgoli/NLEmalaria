@@ -88,3 +88,28 @@ def caption_image_web(request):
 
         return render(request, 'caption/caption_result.html', {'caption': caption, 'image_url': image_url})
     return render(request, 'caption/upload_image.html')
+
+
+
+
+
+
+# # captions/views.py
+
+# @csrf_exempt
+# @api_view(['GET', 'POST'])
+# def caption_image_in_flutter(request):
+#     if request.method == 'POST' and 'image' in request.FILES:
+#         image = request.FILES['image']
+#         image_path = default_storage.save(image.name, image)
+#         full_image_path = os.path.join(default_storage.location, image_path)
+        
+#         caption = predict_caption(full_image_path)
+        
+#         return JsonResponse({'caption': caption})
+#     else:
+#         return JsonResponse({'error': 'No image provided'}, status=400)
+
+
+
+

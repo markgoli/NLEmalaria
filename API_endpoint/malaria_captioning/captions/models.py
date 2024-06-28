@@ -26,32 +26,33 @@
 
 # captions/model.py
 # captions/model.py
-# captions/model.py
-# myapp/model.py
-# myapp/model.py
-from transformers import VisionEncoderDecoderModel, ViTImageProcessor, AutoTokenizer
-from PIL import Image
 
-class MalariaCaptioningModel:
-    _instance = None
+from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, AutoTokenizer
 
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super(MalariaCaptioningModel, cls).__new__(cls)
-            cls._instance.model_name = "BRIAN12682/malaria-captioning-v2"
-            cls._instance.model = VisionEncoderDecoderModel.from_pretrained(cls._instance.model_name)
-            cls._instance.feature_extractor = ViTImageProcessor.from_pretrained(cls._instance.model_name)
-            cls._instance.tokenizer = AutoTokenizer.from_pretrained(cls._instance.model_name)
-        return cls._instance
+model_name = "BRIAN12682/malaria-captioning-v2"
+model = None
+feature_extractor = None
+tokenizer = None
 
-    def predict_caption(self, image: Image.Image, max_length=50) -> str:
-        if image.mode != "RGB":
-            image = image.convert("RGB")
-        
-        pixel_values = self.feature_extractor(images=image, return_tensors="pt").pixel_values
-        output_ids = self.model.generate(pixel_values, max_length=max_length)
-        caption = self.tokenizer.decode(output_ids[0], skip_special_tokens=True)
-        return caption
+def load_model():
+    global model, feature_extractor, tokenizer
+    if model is None:
+        model = VisionEncoderDecoderModel.from_pretrained(model_name)
+        feature_extractor = ViTFeatureExtractor.from_pretrained(model_name)
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+load_model()
+
+def predict_caption(image_path, max_length=50):
+    from PIL import Image
+    image = Image.open(image_path)
+    if image.mode != "RGB":
+        image = image.convert("RGB")
+    
+    pixel_values = feature_extractor(images=image, return_tensors="pt").pixel_values
+    output_ids = model.generate(pixel_values, max_length=max_length)
+    caption = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+    return caption
 
 
 # # Usage
