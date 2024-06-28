@@ -203,10 +203,10 @@ class _RegisterPage extends State<RegisterPage> {
                             child: Center(
                               child: Text(
                                 'Discover the critical world of malaria microscopy with the power of advanced technology at your fingertips. Our app leverages cutting-edge imaging and artificial intelligence to provide detailed, natural language explanations of malaria microscopy images, helping you understand and diagnose malaria with unprecedented clarity and precision.',
-                                style: TextStyle(
-                                    fontSize: 11,
-                                    color: white,
-                                    fontWeight: FontWeight.w500),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(color: white),
                                 textAlign: TextAlign.center,
                               ),
                             ),

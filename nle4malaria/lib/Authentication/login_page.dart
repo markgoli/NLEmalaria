@@ -184,10 +184,10 @@ class _LoginPageState extends State<LoginPage> {
                             child: Center(
                               child: Text(
                                 "Join us on a journey of scientific discovery and innovation. Whether you're a healthcare professional, researcher, or student, MicroMalaria Insights offers a unique educational tool that enhances your understanding of one of the world's most significant infectious diseases.",
-                                style: TextStyle(
-                                    fontSize: 11,
-                                    color: mainAppColor2,
-                                    fontWeight: FontWeight.w600),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(color: mainAppColor2),
                                 textAlign: TextAlign.center,
                               ),
                             ),
