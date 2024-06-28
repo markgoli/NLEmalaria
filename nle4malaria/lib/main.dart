@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 //import 'Authentication/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nle4malaria/config/router.dart';
 import 'firebase_options.dart';
 
@@ -21,24 +22,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Demo',
+      title: 'Malaria Microscopy',
       theme: ThemeData(
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        textTheme: GoogleFonts.plusJakartaSansTextTheme(
+          Theme.of(context).textTheme,
+        ),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-
-      // home: const SplashScreen(),
-      // const AuthPage()
-      // SplashScreen()
     );
   }
 }
