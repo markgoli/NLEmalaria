@@ -7,9 +7,10 @@
 # ]
 # captions/urls.py
 from django.urls import path
-from .views import caption_image_api, caption_image_web
+from .views import caption_image_api, caption_image_web, caption_image_in_flutter
 
 urlpatterns = [
     path('caption/api/', caption_image_api, name='caption_image_api'),
     path('caption/web/', caption_image_web, name='caption_image_web'),
+    path('caption/flutter/', caption_image_in_flutter, name='caption_image_in_flutter'),
 ]

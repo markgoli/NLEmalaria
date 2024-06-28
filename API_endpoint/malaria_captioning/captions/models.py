@@ -43,7 +43,7 @@ def load_model():
 
 load_model()
 
-def predict_caption(image_path, max_length=50):
+def predict_caption(image_path, max_length=100):
     from PIL import Image
     image = Image.open(image_path)
     if image.mode != "RGB":
