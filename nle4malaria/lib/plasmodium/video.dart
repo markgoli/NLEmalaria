@@ -16,12 +16,9 @@ class VideoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mainBlue,
-        title: const Text(
+        title: Text(
           "Visual Explanatuions.",
-          style: TextStyle(
-              color: whiteColor,
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(color: white),
         ),
         centerTitle: true,
       ),

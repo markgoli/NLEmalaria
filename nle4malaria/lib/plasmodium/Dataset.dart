@@ -34,15 +34,9 @@ class _DatasetGalleryScreenState extends State<DatasetGalleryScreen> {
     return Scaffold(
       backgroundColor: lightBlue,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Dataset',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            fontFamily:
-                'Roboto', // Specify the font family if you have a custom font
-          ),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(color: white),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(

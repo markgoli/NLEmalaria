@@ -112,15 +112,9 @@ class _UploadImageState extends State<UploadImage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Microscopy',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            fontFamily:
-                'Roboto', // Specify the font family if you have a custom font
-          ),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(color: white),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -145,9 +139,17 @@ class _UploadImageState extends State<UploadImage> {
                           const SizedBox(
                             height: 30,
                           ),
-                          Image.asset(
-                            'assets/images/setup.png',
-                            height: 250,
+                          // Image.asset(
+                          //   'assets/images/setup.png',
+                          //   height: 250,
+                          // ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              'assets/images/setup.png',
+                              width: 150,
+                              fit: BoxFit.cover,
+                            ),
                           ),
 
                           // Text(

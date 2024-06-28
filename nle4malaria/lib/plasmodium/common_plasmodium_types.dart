@@ -11,15 +11,9 @@ class PlasmodiumParasiteChecker extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Pathogen Types',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            fontFamily:
-                'Roboto', // Specify the font family if you have a custom font
-          ),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(color: white),
         ),
         flexibleSpace: Container(
           decoration: const BoxDecoration(color: mainBlue),
@@ -62,12 +56,10 @@ class PlasmodiumParasiteChecker extends StatelessWidget {
                                 padding: const EdgeInsets.all(9.0),
                                 child: Text(
                                   'Malaria',
-                                  style: TextStyle(
-                                    color: mainAppColor2,
-                                    fontSize: 35,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Arial',
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(color: mainAppColor2),
                                   textAlign: TextAlign.center,
                                 ),
                               ))
@@ -82,12 +74,10 @@ class PlasmodiumParasiteChecker extends StatelessWidget {
                                 width: 300,
                                 child: Text(
                                   'Malaria, a life-threatening disease transmitted through the bite of an infected Anopheles mosquito, is caused by parasitic protozoans belonging to the genus Plasmodium. Four primary species are notorious for infecting humans: Plasmodium falciparum, Plasmodium malariae, Plasmodium ovale, and Plasmodium vivax. Each species exhibits unique characteristics and structural adaptations that enable their survival and propagation within both the mosquito and human hosts.',
-                                  style: const TextStyle(
-                                    color: mainBlue,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Roboto',
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(color: mainAppColor2),
                                   textAlign: TextAlign.justify,
                                 ),
                               ),
@@ -135,7 +125,7 @@ class PlasmodiumParasiteChecker extends StatelessWidget {
       String imagePath, String title, String description) {
     return Container(
       margin: EdgeInsets.all(10),
-      // height: 80,
+      height: double.infinity,
       // width: 300,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -163,30 +153,25 @@ class PlasmodiumParasiteChecker extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 5),
           Text(
             title,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: mainAppColor2,
-              fontSize: 15,
+              fontSize: 13,
               fontWeight: FontWeight.bold,
               fontFamily: 'Arial',
               // decoration: TextDecoration.underline,
               decorationColor: Color.fromARGB(255, 0, 0, 0),
             ),
           ),
-          if (description.isNotEmpty) const SizedBox(height: 8),
+          if (description.isNotEmpty) const SizedBox(height: 3),
           if (description.isNotEmpty)
             Text(
               description,
               textAlign: TextAlign.justify,
-              style: TextStyle(
-                color: mainBlue,
-                fontSize: 11,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Roboto',
-              ),
+              style: TextStyle(fontSize: 11, color: mainBlue),
             ),
         ],
       ),
