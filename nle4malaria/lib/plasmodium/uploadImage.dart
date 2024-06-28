@@ -10,6 +10,8 @@ import 'package:nle4malaria/Services/firebase_storage_service.dart';
 import 'package:nle4malaria/config/extensions.dart';
 import 'package:nle4malaria/plasmodium/results.dart';
 import 'package:nle4malaria/styles/color.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'dart:developer' as devtools;
 
 class UploadImage extends StatefulWidget {
@@ -24,6 +26,7 @@ class _UploadImageState extends State<UploadImage> {
   late String _imageUrl;
   double confidence = 0.0;
   String label = '';
+  String caption = '';
 
   Future<void> _tfliteInit() async {
     try {
@@ -51,6 +54,7 @@ class _UploadImageState extends State<UploadImage> {
     setState(() {
       image = File(pickedFile.path);
       uploadImageToFirebase();
+      uploadImageToAPI();
     });
 
     // if (pickedFile != null) {
@@ -92,6 +96,30 @@ class _UploadImageState extends State<UploadImage> {
     });
   }
 
+  // Upload image to API for testing.
+
+  Future<void> uploadImageToAPI() async {
+    if (image == null) return;
+
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse('http://127.0.0.1:8000/caption/flutter/'),
+    );
+    request.files.add(await http.MultipartFile.fromPath('image', image!.path));
+
+    final response = await request.send();
+
+    if (response.statusCode == 200) {
+      final responseData = await response.stream.bytesToString();
+      final decodedData = json.decode(responseData);
+      setState(() {
+        caption = decodedData['caption'];
+      });
+    } else {
+      print('Failed to upload image.');
+    }
+  }
+
   @override
   void dispose() {
     Tflite.close();
@@ -100,6 +128,7 @@ class _UploadImageState extends State<UploadImage> {
 
   @override
   void initState() {
+    uploadImageToAPI();
     super.initState();
     _tfliteInit().then((_) {
       if (mounted) {
@@ -139,10 +168,6 @@ class _UploadImageState extends State<UploadImage> {
                           const SizedBox(
                             height: 30,
                           ),
-                          // Image.asset(
-                          //   'assets/images/setup.png',
-                          //   height: 250,
-                          // ),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.asset(
@@ -151,14 +176,6 @@ class _UploadImageState extends State<UploadImage> {
                               fit: BoxFit.cover,
                             ),
                           ),
-
-                          // Text(
-                          //   'Place your phone camera to the eyepiece of your microscope.',
-                          //   textAlign: TextAlign.center,
-                          //   style: AppTheme.subTitleStyle(
-                          //       color: mainBlue, isBold: false),
-                          // ),
-
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: const Text(
@@ -188,7 +205,6 @@ class _UploadImageState extends State<UploadImage> {
                                   image: FileImage(
                                     image!,
                                   ),
-                                  // image: Image.network(_imageUrl),
                                   fit: BoxFit.fill,
                                 ),
                         ),
@@ -204,6 +220,7 @@ class _UploadImageState extends State<UploadImage> {
                                       builder: (context) => Results(
                                         image: image,
                                         label: label,
+                                        caption: caption,
                                       ),
                                     ),
                                   );
@@ -218,7 +235,8 @@ class _UploadImageState extends State<UploadImage> {
                               },
                               icon: Icon(
                                 Icons.recent_actors_outlined,
-                                color: white,
+                                color:
+                                    white, // image: Image.network(_imageUrl),
                               ),
                               text: 'See full Diagnostic Report',
                             ),

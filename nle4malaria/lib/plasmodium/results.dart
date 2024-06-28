@@ -11,8 +11,13 @@ import 'package:nle4malaria/styles/color.dart';
 class Results extends StatelessWidget {
   final File? image;
   String label;
+  String caption;
 
-  Results({Key? key, required this.image, required this.label})
+  Results(
+      {Key? key,
+      required this.image,
+      required this.label,
+      required this.caption})
       : super(key: key);
 
   @override
@@ -126,8 +131,8 @@ class Results extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(30),
                       child: Text(
+                        caption,
                         // 'There are 19 pathogens observed from the eyepeice, which belong to P-Falciparum Class of Malaria Plasmodia.',
-                        'FRENCH\nTranslated Caption: Cette image montre 17 pathogènes et est gravement infectée.',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: mainBlue,
@@ -140,7 +145,7 @@ class Results extends StatelessWidget {
                       ),
                     ),
                   ),
-                  100.height(),
+                  80.height(),
                   UploadButton(
                     onTap: () {
                       Navigator.push(
