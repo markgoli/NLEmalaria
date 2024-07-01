@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Malaria Captioning Result</title>
@@ -9,5 +9,62 @@
     <img src="{{ image_url }}" alt="Uploaded Image">
     <br>
     <a href="{% url 'caption_image_web' %}">Upload Another Image</a>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Captioning Result</title>
+    {% load static %}
+</head>
+<body>
+    <h1>Image Caption</h1>
+    <p id="caption">{{ caption }}</p>
+    <img src="{{ image_url }}" alt="Uploaded Image">
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="image_path" value="{{ image_path }}">
+        <input type="hidden" name="lang" value="fr">
+        <button type="submit">Translate to French</button>
+    </form>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="image_path" value="{{ image_path }}">
+        <input type="hidden" name="lang" value="sw">
+        <button type="submit">Translate to Swahili</button>
+    </form>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="image_path" value="{{ image_path }}">
+        <input type="hidden" name="lang" value="en">
+        <button type="submit">Translate to English</button>
+    </form>
+    <br>
+    <a href="{% url 'caption_image_web' %}">Upload Another Image</a>
+
+    <!-- Alert sounds -->
+    <audio id="emergencySound" src="{% static 'detected.mp3' %}" preload="auto"></audio>
+    <audio id="notificationSound" src="{% static 'notification.mp3' %}" preload="auto"></audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const captionText = document.getElementById('caption').innerText.toLowerCase();
+            const emergencySound = document.getElementById('emergencySound');
+            const notificationSound = document.getElementById('notificationSound');
+
+            const emergencyKeywords = ['severely infected', 'immediate action', 'p.falciparum'];
+            const notificationKeywords = ['no pathogens', 'not infected', 'current capabilities'];
+
+            let playEmergencySound = emergencyKeywords.some(keyword => captionText.includes(keyword));
+            let playNotificationSound = notificationKeywords.some(keyword => captionText.includes(keyword));
+
+            if (playEmergencySound) {
+                emergencySound.play();
+            } else if (playNotificationSound) {
+                notificationSound.play();
+            }
+        });
+    </script>
 </body>
 </html>

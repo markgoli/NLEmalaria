@@ -29,6 +29,8 @@
 # captions/model.py
 # myapp/model.py
 # myapp/model.py
+# captions/model.py
+# captions/model.py
 from transformers import VisionEncoderDecoderModel, ViTImageProcessor, AutoTokenizer
 from PIL import Image
 
