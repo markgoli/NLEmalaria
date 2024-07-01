@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:nle4malaria/plasmodium/Dataset.dart';
+import 'package:nle4malaria/plasmodium/Upload.dart';
 import 'package:nle4malaria/plasmodium/common_plasmodium_types.dart';
 import 'package:nle4malaria/plasmodium/uploadImage.dart';
 import 'package:nle4malaria/plasmodium/video.dart';
@@ -19,7 +20,7 @@ class MenuContainer extends StatelessWidget {
     ];
     List<CustomIcon> healthNeeds = [
       CustomIcon(name: "Tutorial", icon: 'assets/images/appointment.png'),
-      CustomIcon(name: "Hospital", icon: 'assets/images/hospital.png'),
+      CustomIcon(name: "ImageCap", icon: 'assets/images/hospital.png'),
       CustomIcon(name: "Covid-19", icon: 'assets/images/virus.png'),
       CustomIcon(name: "Pharmacy", icon: 'assets/images/drug.png'),
     ];
@@ -70,6 +71,13 @@ class MenuContainer extends StatelessWidget {
                                                 MaterialPageRoute(
                                                     builder: (context) =>
                                                         VideoPage()));
+                                          } else if (index ==
+                                              healthNeeds.length - 3) {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ImageCaptioning()));
                                           }
                                         },
                                         borderRadius: BorderRadius.circular(90),
