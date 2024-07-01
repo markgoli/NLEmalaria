@@ -93,7 +93,7 @@ class _UploadImageState extends State<UploadImage> {
     String imageUrl = await FirebaseStorageService.uploadFile(image!);
     final request = http.MultipartRequest(
       'POST',
-      Uri.parse('http://127.0.0.1:8000/caption/flutter/'),
+      Uri.parse('http://127.0.0.1:8000/'),
     );
     request.files.add(await http.MultipartFile.fromPath('image', image!.path));
 
@@ -120,7 +120,7 @@ class _UploadImageState extends State<UploadImage> {
 
     final request = http.MultipartRequest(
       'POST',
-      Uri.parse('http://127.0.0.1:8000/caption/flutter/'),
+      Uri.parse('http://127.0.0.1:8000/'),
     );
     request.files.add(await http.MultipartFile.fromPath('image', image!.path));
 
@@ -138,33 +138,29 @@ class _UploadImageState extends State<UploadImage> {
   }
 
   Future<void> fetchCaption(String imagePath) async {
-    try {
-      // Replace 'YOUR_HUGGINGFACE_API_KEY' with your actual Hugging Face API key
-      const String apiKey = 'YOUR_HUGGINGFACE_API_KEY';
-      final headers = {
-        'Authorization': 'Bearer $apiKey',
-        'Content-Type': 'application/json',
-      };
+    const String apiKey =
+        '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'; // Use your Hugging Face API key
+    final headers = {
+      'Authorization': 'Bearer $apiKey',
+      'Content-Type': 'application/json',
+    };
 
-      // Image data should be encoded in base64
-      String imageBase64 = await encodeImageToBase64(imagePath);
+    String imageBase64 = base64Encode(File(imagePath).readAsBytesSync());
+    final response = await http.post(
+      Uri.parse(
+          'https://api-inference.huggingface.co/models/BRIAN12682/malaria-captioning-v2'),
+      headers: headers,
+      body: jsonEncode({'inputs': imageBase64}),
+    );
 
-      final response = await http.post(
-        Uri.parse(
-            'https://api-inference.huggingface.co/models/BRIAN12682/malaria-captioning-v2'),
-        headers: headers,
-        body: jsonEncode({'inputs': imageBase64}),
-      );
-
-      if (response.statusCode == 200) {
-        var data = jsonDecode(response.body);
-        // Handle the response as needed, e.g., displaying the caption
-        print('Caption: ${data['generated_text']}');
-      } else {
-        print('Failed to fetch caption: ${response.body}');
-      }
-    } catch (e) {
-      print('Error fetching caption: $e');
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      setState(() {
+        caption = data[
+            'generated_text']; // Ensure you have a state variable for caption
+      });
+    } else {
+      print('Failed to fetch caption: ${response.statusCode}');
     }
   }
 
