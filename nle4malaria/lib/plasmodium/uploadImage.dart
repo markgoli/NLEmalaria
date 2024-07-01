@@ -54,15 +54,8 @@ class _UploadImageState extends State<UploadImage> {
     setState(() {
       image = File(pickedFile.path);
       uploadImageToFirebase();
-      // uploadImageToAPI();
+      fetchCaption(pickedFile.path);
     });
-
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     _image = File(pickedFile.path);
-    //   });
-    //   uploadImage();
-    // }
 
     try {
       var recognitions = await Tflite.runModelOnImage(
@@ -91,23 +84,7 @@ class _UploadImageState extends State<UploadImage> {
   Future uploadImageToFirebase() async {
     if (image == null) return;
     String imageUrl = await FirebaseStorageService.uploadFile(image!);
-    final request = http.MultipartRequest(
-      'POST',
-      Uri.parse('http://127.0.0.1:8000/'),
-    );
-    request.files.add(await http.MultipartFile.fromPath('image', image!.path));
 
-    final response = await request.send();
-
-    if (response.statusCode == 200) {
-      final responseData = await response.stream.bytesToString();
-      final decodedData = json.decode(responseData);
-      setState(() {
-        caption = decodedData['caption'];
-      });
-    } else {
-      print('Failed to upload image.');
-    }
     setState(() {
       _imageUrl = imageUrl;
     });
@@ -139,7 +116,7 @@ class _UploadImageState extends State<UploadImage> {
 
   Future<void> fetchCaption(String imagePath) async {
     const String apiKey =
-        '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'; // Use your Hugging Face API key
+        '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'; // Use your Hugging Face API key
     final headers = {
       'Authorization': 'Bearer $apiKey',
       'Content-Type': 'application/json',
@@ -161,6 +138,7 @@ class _UploadImageState extends State<UploadImage> {
       });
     } else {
       print('Failed to fetch caption: ${response.statusCode}');
+      print(response.body);
     }
   }
 

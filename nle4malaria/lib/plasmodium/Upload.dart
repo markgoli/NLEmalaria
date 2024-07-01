@@ -13,7 +13,6 @@ class ImageCaptioning extends StatefulWidget {
 
 class _ImageCaptioningState extends State<ImageCaptioning> {
   File? image;
-  late String _imageUrl;
   double confidence = 0.0;
   String label = '';
   String caption = '';
@@ -87,8 +86,7 @@ class _ImageCaptioningState extends State<ImageCaptioning> {
             child: Text('Capture Image from Camera'),
           ),
           SizedBox(height: 20),
-          Text(caption ??
-              'Caption will appear here...'), // Ensure you have a state variable for caption
+          Text(caption ?? ''), // Ensure you have a state variable for caption
         ],
       ),
     );
