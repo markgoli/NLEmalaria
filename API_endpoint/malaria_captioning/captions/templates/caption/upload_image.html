@@ -13,7 +13,7 @@
 </body>
 </html> -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Image Captioning</title>
@@ -26,4 +26,159 @@
         <button type="submit">Upload</button>
     </form>
 </body>
+</html> -->
+
+<!-- v2 - mac -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Analysis</title>
+    <style>
+      body,
+      html {
+        height: 100%; /* Ensures the full height of the viewport is used */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column; /* Stacks items vertically */
+        justify-content: center; /* Center items vertically */
+        align-items: center; /* Center items horizontally */
+        background-image: url("../../static/images/person.webp"); /* Set your background image */
+        background-size: cover; /* Cover the entire page */
+        background-position: center; /* Center the background image */
+        font-family: "Arial", sans-serif;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Black overlay with 50% opacity */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      h1 {
+        margin: 0 0 20px 0; /* Space below the header */
+        font-size: 3.5em; /* Larger font size */
+        color: #ffffff; /* White color for better visibility */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+      }
+      h2 {
+        margin: 0 0 20px 0; /* Space below the header */
+        font-size: 1.5em; /* Larger font size */
+        color: #c7d1da; /* White color for better visibility */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+      }
+      form {
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* Semi-transparent white background */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        margin-bottom: 20px; /* Space between form and images */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center form contents */
+      }
+      input[type="file"],
+      button {
+        padding: 10px;
+        margin: 5px 0; /* Smaller margin for better form compactness */
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .image-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 20px;
+      }
+      .image-box-1 {
+        max-width: 15%;
+        margin-left: 90px;
+      }
+      .image-box {
+        flex: 1 1 300px; /* Allows boxes to grow and shrink but not smaller than 300px */
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center the captions with the images */
+      }
+      img {
+        width: 100%; /* Makes the image responsive within the container */
+        max-width: 300px; /* Limiting maximum size */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 8px;
+      }
+      .caption {
+        font-size: 14px;
+        color: #ffffff; /* White for better visibility */
+        text-align: center;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay">
+      <h1>MicroMalaria Insights</h1>
+      <h2>Upload Microscopic Image for Analysis.</h2>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image" accept="image/*" />
+        <button type="submit">Upload</button>
+      </form>
+      <div class="image-container">
+        <div class="image-box">
+          <img
+            src="../../static/images/micro.webp"
+            alt="Mid-stage malaria parasites in red blood cells"
+          />
+          <div class="caption">
+            A Microscopic View of the Plasmodium parasites.
+          </div>
+        </div>
+
+        <div class="image-box-1">
+          <img
+            src="../../static/images/setup.png"
+            alt="Early-stage malaria parasites in red blood cells"
+          />
+          <div class="caption">
+            Apparatus Setup for Early-stage infection Detection
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img
+            src="../../static/images/real.webp"
+            alt="Late-stage malaria parasites causing cell breakdown"
+          />
+          <div class="caption">Mobile-based Infection Detection</div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

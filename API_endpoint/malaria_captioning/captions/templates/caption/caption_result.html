@@ -11,60 +11,271 @@
     <a href="{% url 'caption_image_web' %}">Upload Another Image</a>
 </body>
 </html> -->
-<!DOCTYPE html>
+
+<!-- <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Image Captioning Result</title>
     {% load static %}
-</head>
-<body>
+  </head>
+  <body>
     <h1>Image Caption</h1>
     <p id="caption">{{ caption }}</p>
-    <img src="{{ image_url }}" alt="Uploaded Image">
-    <br>
+    <img src="{{ image_url }}" alt="Uploaded Image" />
+    <br />
     <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="image_path" value="{{ image_path }}">
-        <input type="hidden" name="lang" value="fr">
-        <button type="submit">Translate to French</button>
+      {% csrf_token %}
+      <input type="hidden" name="image_path" value="{{ image_path }}" />
+      <input type="hidden" name="lang" value="fr" />
+      <button type="submit">Translate to French</button>
     </form>
     <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="image_path" value="{{ image_path }}">
-        <input type="hidden" name="lang" value="sw">
-        <button type="submit">Translate to Swahili</button>
+      {% csrf_token %}
+      <input type="hidden" name="image_path" value="{{ image_path }}" />
+      <input type="hidden" name="lang" value="sw" />
+      <button type="submit">Translate to Swahili</button>
     </form>
     <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="image_path" value="{{ image_path }}">
-        <input type="hidden" name="lang" value="en">
-        <button type="submit">Translate to English</button>
+      {% csrf_token %}
+      <input type="hidden" name="image_path" value="{{ image_path }}" />
+      <input type="hidden" name="lang" value="en" />
+      <button type="submit">Translate to English</button>
     </form>
-    <br>
+    <br />
     <a href="{% url 'caption_image_web' %}">Upload Another Image</a>
 
-    <!-- Alert sounds -->
-    <audio id="emergencySound" src="{% static 'detected.mp3' %}" preload="auto"></audio>
-    <audio id="notificationSound" src="{% static 'notification.mp3' %}" preload="auto"></audio>
+    <audio
+      id="emergencySound"
+      src="{% static 'detected.mp3' %}"
+      preload="auto"
+    ></audio>
+    <audio
+      id="notificationSound"
+      src="{% static 'notification.mp3' %}"
+      preload="auto"
+    ></audio>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const captionText = document.getElementById('caption').innerText.toLowerCase();
-            const emergencySound = document.getElementById('emergencySound');
-            const notificationSound = document.getElementById('notificationSound');
+      document.addEventListener("DOMContentLoaded", function () {
+        const captionText = document
+          .getElementById("caption")
+          .innerText.toLowerCase();
+        const emergencySound = document.getElementById("emergencySound");
+        const notificationSound = document.getElementById("notificationSound");
 
-            const emergencyKeywords = ['severely infected', 'immediate action', 'p.falciparum'];
-            const notificationKeywords = ['no pathogens', 'not infected', 'current capabilities'];
+        const emergencyKeywords = [
+          "severely infected",
+          "immediate action",
+          "p.falciparum",
+        ];
+        const notificationKeywords = [
+          "no pathogens",
+          "not infected",
+          "current capabilities",
+        ];
 
-            let playEmergencySound = emergencyKeywords.some(keyword => captionText.includes(keyword));
-            let playNotificationSound = notificationKeywords.some(keyword => captionText.includes(keyword));
+        let playEmergencySound = emergencyKeywords.some((keyword) =>
+          captionText.includes(keyword)
+        );
+        let playNotificationSound = notificationKeywords.some((keyword) =>
+          captionText.includes(keyword)
+        );
 
-            if (playEmergencySound) {
-                emergencySound.play();
-            } else if (playNotificationSound) {
-                notificationSound.play();
-            }
-        });
+        if (playEmergencySound) {
+          emergencySound.play();
+        } else if (playNotificationSound) {
+          notificationSound.play();
+        }
+      });
     </script>
-</body>
+  </body>
+</html> -->
+
+<!-- mac  -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Captioning Result</title>
+    <style>
+      body,
+      html {
+        height: 100%; /* Ensures the full height of the viewport is used */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: url("../../static/images/person.webp"); /* Set your background image */
+        background-size: cover; /* Cover the entire page */
+        background-position: center; /* Center the background image */
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.6
+        ); /* Black overlay with 60% opacity */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: relative; /* Needed to position the button relative to this container */
+        margin-top: 15px; /* Reduced margin for closer elements */
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 40px;
+        color: white;
+      }
+      .header-button {
+        position: absolute; /* Absolute positioning within the .header */
+        right: 10px; /* Aligns the button to the far right of the .header */
+        top: 50%;
+        transform: translateY(-50%); /* Vertically center the button */
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        margin-right: 80px;
+      }
+      .header-button:hover {
+        background-color: #45a049;
+      }
+      .image-card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin: 10px;
+        width: 80%; /* Reduced width */
+        max-width: 600px; /* Adjusted maximum width */
+        text-align: center;
+      }
+      img {
+        max-width: 60%; /* Further reduced the image size */
+        border-radius: 4px;
+      }
+      p#caption {
+        background-color: #e8f5e9;
+        color: #333;
+        padding: 8px;
+        border-radius: 4px;
+        margin: 10px 0; /* Reduced vertical spacing */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .button-row {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 5px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+    {% load static %}
+  </head>
+  <body>
+    <div class="overlay">
+      <div class="header">
+        <h1>Analysis Results</h1>
+        <a href="{% url 'caption_image_web' %}" class="header-button"
+          >Upload Another Image</a
+        >
+      </div>
+      <div class="image-card">
+        <img src="{{ image_url }}" alt="Uploaded Image" />
+        <p id="caption">{{ caption }}</p>
+      </div>
+      <div class="button-row">
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="image_path" value="{{ image_path }}" />
+          <input type="hidden" name="lang" value="fr" />
+          <button type="submit">Translate to French</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="image_path" value="{{ image_path }}" />
+          <input type="hidden" name="lang" value="sw" />
+          <button type="submit">Translate to Swahili</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="image_path" value="{{ image_path }}" />
+          <input type="hidden" name="lang" value="en" />
+          <button type="submit">Translate to English</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Alert sounds -->
+    <audio
+      id="emergencySound"
+      src="{% static 'detected.mp3' %}"
+      preload="auto"
+    ></audio>
+    <audio
+      id="notificationSound"
+      src="{% static 'notification.mp3' %}"
+      preload="auto"
+    ></audio>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const captionText = document
+          .getElementById("caption")
+          .innerText.toLowerCase();
+        const emergencySound = document.getElementById("emergencySound");
+        const notificationSound = document.getElementById("notificationSound");
+
+        const emergencyKeywords = [
+          "severely infected",
+          "immediate action",
+          "p.falciparum",
+        ];
+        const notificationKeywords = [
+          "no pathogens",
+          "not infected",
+          "current capabilities",
+        ];
+
+        let playEmergencySound = emergencyKeywords.some((keyword) =>
+          captionText.includes(keyword)
+        );
+        let playNotificationSound = notificationKeywords.some((keyword) =>
+          captionText.includes(keyword)
+        );
+
+        if (playEmergencySound) {
+          emergencySound.play();
+        } else if (playNotificationSound) {
+          notificationSound.play();
+        }
+      });
+    </script>
+  </body>
 </html>
