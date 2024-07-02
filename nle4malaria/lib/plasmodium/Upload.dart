@@ -19,7 +19,7 @@ class _ImageCaptioningState extends State<ImageCaptioning> {
 
   Future<void> fetchCaption(String imagePath) async {
     const String apiKey =
-        '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'; // Use your Hugging Face API key
+        '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'; // Use your Hugging Face API key
     final headers = {
       'Authorization': 'Bearer $apiKey',
       'Content-Type': 'application/json',

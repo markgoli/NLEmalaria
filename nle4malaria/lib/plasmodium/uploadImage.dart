@@ -27,6 +27,7 @@ class _UploadImageState extends State<UploadImage> {
   double confidence = 0.0;
   String label = '';
   String caption = '';
+  String API_J = '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';
 
   Future<void> _tfliteInit() async {
     try {
